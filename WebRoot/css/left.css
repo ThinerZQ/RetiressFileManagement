@@ -1,0 +1,33 @@
+.left{
+	width: 200px;
+	background-color: green;
+	margin-left: 0px;
+	float: left;
+	}
+
+
+
+.left_login{
+	height: 50px;
+	width: 200px;
+	background-color: pink;
+	}
+.nav{
+	height: 400px;
+	width: 200px;
+	background-color: coral;
+	
+	}
+.navul{
+	text-decoration: none;
+	list-style-type: circle;
+	}
+.navul li{
+	line-height: 40px;
+	background-color: blue;
+	margin-top: 5px;
+	font-size: 18px;
+	}
+.navul li span{
+		margin-left: 60px;
+	}

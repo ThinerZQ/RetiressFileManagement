@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<!-- 将Action的创建交给spring来管理 -->
+	<constant name="struts.objectFactory" value="spring" />
+
+
+	<!--
+		<constant name="struts.configuration.xml.reload" value="true" />
+		<constant name="struts.devMode" value="true" /> <constant
+		name="struts.i18n.encoding" value="UTF-8" />
+	-->
+	<constant name="struts.multipart.maxSize" value="10701096" />
+	<constant name="struts.multipart.saveDir " value="d:/tmp" />
+
+
+
+	<constant name="struts.il8n.encoding" value="utf-8" />
+	<constant name="struts.custom.il8n.resources" value="messageResource" />
+	<package namespace="/" extends="struts-default" name="mystruts2">
+
+
+		<interceptors>
+			<interceptor name="permissionInterceptor"
+				class="com.zq.interceptor.PermissionInterceptor"></interceptor>
+			<!-- 自定义拦截器栈 -->
+			<interceptor-stack name="myDefaultInterceptorStack">
+				<interceptor-ref name="permissionInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultInterceptorStack"></default-interceptor-ref>
+		<global-results>
+			
+			<result name="login" type="redirect">/WEB-INF/login.jsp</result>
+		</global-results>
+
+
+
+
+
+
+
+
+		<action name="adminLoginAction" class="com.zq.action.AdminLoginAction"
+			method="execute">
+			<result name="successadmin">/WEB-INF/welcome.jsp</result>
+			<result name="successuser">/WEB-INF/front/userinfo.jsp</result>
+			<result name="changepwd">/WEB-INF/front/changepwd.jsp</result>
+			<result name="error">/WEB-INF/login.jsp</result>
+		</action>
+
+
+
+
+		<action name="goAddAction" class="com.zq.action.RedirectAction"
+			method="addUser">
+			<result name="success">/WEB-INF/userAdd.jsp</result>
+		</action>
+		<action name="goQueryAction" class="com.zq.action.RedirectAction"
+			method="queryUser">
+			<result name="success">/WEB-INF/query.jsp</result>
+		</action>
+		<action name="gowelcomeAction" class="com.zq.action.RedirectAction"
+			method="queryUser">
+			<result name="success">/WEB-INF/query.jsp</result>
+		</action>
+
+		<action name="goChoiceOutputColsAction" class="com.zq.action.RedirectAction"
+			method="goChoiceOutputCols">
+			<result name="success">/WEB-INF/choiceinfo.jsp</result>
+		</action>
+		<action name="goFileUpAction" class="com.zq.action.RedirectAction"
+			method="goFileUp">
+			<result name="success">/WEB-INF/dataimport.jsp</result>
+		</action>
+
+		<action name="goExcelAction" class="com.zq.action.DealExcelAction"
+			method="execute">
+			<result name="success" type="stream">
+
+				<!--设置为Excel-->
+				<param name="contentType">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=ISO8859-1</param>
+
+				<!--下载文件流-->
+				<param name="inputName">excelStream</param>
+
+				<!--添加参数，即就是下载的名称-->
+				<param name="contentDisposition">attachment;filename="${excelFileName}"</param>
+
+				<!--缓存-->
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+
+
+
+
+
+
+		<action name="checkMyInfoAction" class="com.zq.action.RedirectAction"
+			method="checkMyInfo">
+			<result name="success">/WEB-INF/front/userinfo.jsp</result>
+		</action>
+		<action name="checkMyDangAnAction" class="com.zq.action.RedirectAction"
+			method="checkMyDangAnInfo">
+			<result name="success">/WEB-INF/front/checkMyFilesInfo.jsp</result>
+		</action>
+
+
+		<action name="dangAnAction" class="com.zq.action.DangAnAction"
+			method="goAddFile">
+			<result name="success">/WEB-INF/fileAdd.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+
+
+
+
+
+		<action name="addUserAction" class="com.zq.action.AddUserAction"
+			method="execute">
+			<result name="success">/WEB-INF/fileAdd.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="queryUserAction" class="com.zq.action.QueryUserAction"
+			method="execute">
+			<result name="success">/WEB-INF/querylist.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="detailInfoAction" class="com.zq.action.DetailInfoAction"
+			method="execute">
+			<result name="success">/WEB-INF/detailinfo.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="checkLogAction" class="com.zq.action.CheckLogAction"
+			method="execute">
+			<result name="success">/WEB-INF/checklog.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="ajaxAction" class="com.zq.action.AjaxAction"
+			method="ajaxLoadAdmin">
+
+		</action>
+		<action name="queryLogAction" class="com.zq.action.QueryLogAction"
+			method="execute">
+			<result name="success">/WEB-INF/checklog.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="fileUpAction" class="com.zq.action.FileUpAction"
+			method="execute">
+			<result name="success">/WEB-INF/fileupsuccess.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+			<param name="savePath">/excel</param>
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<param name="allowedTypes">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
+				<!-- 文件大小, 以字节为单位 -->
+				<param name="maximumSize">10701096</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<action name="fenYeAction" class="com.zq.action.FenYeAction"
+			method="execute">
+			<result name="success">/WEB-INF/welcome.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="fenYeQueryAction" class="com.zq.action.FenYeAction"
+			method="fenYeQuery">
+			<result name="success">/WEB-INF/querylist.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="fenYeQueryLogAction" class="com.zq.action.FenYeAction"
+			method="fenYeQueryLog">
+			<result name="success">/WEB-INF/checklog.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="updateUserAction" class="com.zq.action.UpdateUserAction"
+			method="execute">
+			<result name="successadmin">/WEB-INF/updatesuccess.jsp</result>
+			<result name="successuser">/WEB-INF/front/updatesuccess.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="changePwdAction" class="com.zq.action.ChangePwdAction"
+			method="execute">
+			<result name="success">/WEB-INF/front/changepwdsuccess.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="dangAnAddAction" class="com.zq.action.DangAnAddAction"
+			method="execute">
+			<result name="success">/WEB-INF/fileAdd.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+		<action name="checkDangAnInfo" class="com.zq.action.CheckDangAnInfo"
+			method="execute">
+			<result name="success">/WEB-INF/checkfiles.jsp</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+
+		<action name="ajaxCheckFileTypeAction" class="com.zq.action.AjaxCheckFileTypeAction"
+			method="execute">
+
+		</action>
+		<action name="backupAction" class="com.zq.action.BackupAaction"
+			method="execute">
+			<result name="success">/WEB-INF/backsucc.jsp</result>
+		</action>
+
+
+
+		<action name="goExitAction" class="com.zq.action.RedirectAction"
+			method="goExit">
+			<result name="success">/WEB-INF/login.jsp</result>
+		</action>
+
+
+
+
+		<action name="dealExcelAction" class="com.zq.action.DealExcelAction">
+			<result name="success" type="stream">
+
+				<!--设置为Excel-->
+				<param name="contentType">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=ISO8859-1</param>
+
+				<!--下载文件流-->
+				<param name="inputName">excelStream</param>
+
+				<!--添加参数，即就是下载的名称-->
+				<param name="contentDisposition">attachment;filename="${excelFileName}"</param>
+
+				<!--缓存-->
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="error">/WEB-INF/error.jsp</result>
+		</action>
+
+
+
+
+
+
+		<action name="fileUp" class="com.zq.test.FileUp">
+			<result name="success">/test/success.jsp</result>
+			<result name="error">/test/error.jsp</result>
+			<!-- 通过拦截器来限制上传图片的类型和大小 -->
+
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/gif,image/jpeg</param>
+				<param name="maximumSize">10701096</param>
+			</interceptor-ref>
+
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+
+		</action>
+
+
+
+	</package>
+
+	<package namespace="/test" extends="struts-default" name="testPack">
+		<action name="testAction" class="com.zq.test.TestAction">
+			<result>/test/test.jsp</result>
+		</action>
+	</package>
+
+
+
+</struts>

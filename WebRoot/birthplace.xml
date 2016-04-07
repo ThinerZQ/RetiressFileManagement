@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<birthplace>
+	<province name="四川省">
+		<city name="广元市"></city>
+		<city name="阿坝藏族羌族自治州"></city>
+		<city name="巴中市"></city>
+		<city name="成都市"></city>
+		<city name="达州市"></city>
+		<city name="德阳市"></city>
+		<city name="甘孜藏族自治州"></city>
+		<city name="广安市"></city>
+		<city name="乐山市"></city>
+		<city name="凉山彝族自治州"></city>
+		<city name="泸州市"></city>
+		<city name="眉山市"></city>
+		<city name="绵阳市"></city>
+		<city name="内江市"></city>
+		<city name="南充市"></city>
+		<city name="攀枝花市"></city>
+		<city name="遂宁市"></city>
+		<city name="雅安市"></city>
+		<city name="宜宾市"></city>
+		<city name="自贡市"></city>
+		<city name="南充市"></city>
+		<city name="资阳市"></city>
+	</province>
+	<province name="福建省">
+		<city name="福州市"></city>
+		<city name="龙岩市"></city>
+		<city name="南平市"></city>
+		<city name="宁德市"></city>
+		<city name="泉州市"></city>
+		<city name="三明市"></city>
+		<city name="莆田市"></city>
+		<city name="厦门市"></city>
+		<city name="漳州市"></city>
+	</province>
+	<province name="黑龙江省">
+		<city name="哈尔滨市">
+		</city>
+
+	</province>
+	<province name="吉林省">
+		<city name="长春市">
+		</city>
+
+
+	</province>
+	<province name="辽宁省">
+		<city name="沈阳市">
+
+		</city>
+
+	</province>
+	<province name="江苏省">
+		<city name="南京市">
+
+		</city>
+	</province>
+
+	<province name="山东省">
+		<city name="济南市">
+
+		</city>
+	</province>
+	<province name="安徽省">
+		<city name="合肥市"></city>
+		<city name="安庆市"></city>
+		<city name="蚌埠市"></city>
+		<city name="亳州市"></city>
+		<city name="巢湖市"></city>
+		<city name="滁州市"></city>
+		<city name="阜阳市"></city>
+		<city name="淮北市"></city>
+		<city name="淮南市"></city>
+		<city name="黄山市"></city>
+		<city name="六安市"></city>
+		<city name="马鞍山市"></city>
+		<city name=" 宿州市"></city>
+		<city name="铜陵市"></city>
+		<city name="芜湖市"></city>
+		<city name="宣城市"></city>
+		
+	</province>
+	<province name="河北省">
+		<city name="石家庄">
+
+		</city>
+	</province>
+	<province name="河南省">
+		<city name="郑州市">
+
+		</city>
+	</province>
+
+	<province name="湖北省">
+		<city name="武汉市">
+
+		</city>
+	</province>
+	<province name="湖南省">
+		<city name="长沙市">
+
+		</city>
+	</province>
+	<province name="江西省">
+		<city name="南昌市">
+
+		</city>
+	</province>
+	<province name="陕西省">
+		<city name="西安市">
+
+		</city>
+	</province>
+	<province name="山西省">
+		<city name="太原市">
+
+		</city>
+	</province>
+	<province name="青海省">
+		<city name="西宁市">
+
+		</city>
+	</province>
+	<province name="海南省">
+		<city name="海口市">
+
+		</city>
+	</province>
+	<province name="广东省">
+		<city name="广州市">
+
+		</city>
+	</province>
+	<province name="贵州省">
+		<city name="贵阳市">
+
+		</city>
+	</province>
+	<province name="浙江省">
+		<city name="杭州市">
+
+		</city>
+	</province>
+	<province name="甘肃省">
+		<city name="兰州市">
+
+		</city>
+	</province>
+	<province name="云南省">
+		<city name="昆明市">
+
+		</city>
+	</province>
+</birthplace>
+
+
+
+
+

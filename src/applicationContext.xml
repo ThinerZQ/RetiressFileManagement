@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql:///RetiressFileManagement"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="zhengqiang"></property>
+	</bean>
+
+	<!-- 配置会话工产 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 设置数据源 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 接管了hibernate的对象映射文件 -->
+		<property name="mappingResources">
+			<list>
+				<value>com/zq/beans/User.hbm.xml</value>
+				<value>com/zq/beans/Admin.hbm.xml</value>
+				<value>com/zq/beans/Userlogin.hbm.xml</value>
+				<value>com/zq/beans/Logtable.hbm.xml</value>
+				<value>com/zq/beans/Filetable.hbm.xml</value>
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=true
+				hibernate.format_sql=true
+				hibernate.cache.use_second_level_cache=true
+				hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+				hibernate.generate_statistics=true	  
+		  </value>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器bean,使用HibernateTransactionManager事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<!-- 为事务管理器注入sessionFactory" -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- 启动注解扫描 -->
+
+
+	<!--<tx:annotation-driven transaction-manager="transactionManager" />
+
+	--><!-- 启用spring注解支持 -->
+	<!--  <context:annotation-config/> -->
+	
+	
+	
+	
+	
+	<bean id="adminService" class="com.zq.service.impl.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao" />
+	</bean>
+	<bean id="userService" class="com.zq.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="adminDao" class="com.zq.dao.impl.AdminDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="userDao" class="com.zq.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<bean id="redirectAction" class="com.zq.action.RedirectAction">
+	
+	</bean>
+	
+	
+	
+	<bean id="adminLoginAction" class="com.zq.action.AdminLoginAction"
+		scope="prototype">
+		<property name="adminService" ref="adminService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>	
+	<bean id="addUserAction" class="com.zq.action.AddUserAction">
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="queryUserAction" class="com.zq.action.QueryUserAction">
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="detailInfoAction" class="com.zq.action.DetailInfoAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="dealExcelAction" class="com.zq.action.DealExcelAction">
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="goExcelAction" class="com.zq.action.DealExcelAction">
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	
+	<bean id="checkLogAction" class="com.zq.action.CheckLogAction" lazy-init="true">
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="ajaxAction" class="com.zq.action.AjaxAction" lazy-init="true">
+		
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="ajaxCheckFileTypeAction" class="com.zq.action.AjaxCheckFileTypeAction" lazy-init="true">
+		
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="queryLogAction" class="com.zq.action.QueryLogAction" lazy-init="true">
+		
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="fileUpAction" class="com.zq.action.FileUpAction" lazy-init="true">
+		<property name="adminService" ref="adminService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="fenYeQueryAction" class="com.zq.action.FenYeAction" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="updateUserAction" class="com.zq.action.UpdateUserAction" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		
+	</bean>
+	<bean id="dangAnAction" class="com.zq.action.DangAnAction" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		
+	</bean>
+	
+	<bean id="changePwdAction" class="com.zq.action.ChangePwdAtion" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	
+	
+	<bean id="goExitAction" class="com.zq.action.RedirectAction" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	
+	
+	
+	<bean id="dangAnAddAction" class="com.zq.action.DangAnAddAction" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		<property name="adminService" ref="adminService"></property>
+		
+	</bean>
+	<bean id="checkDangAnInfo" class="com.zq.action.CheckDangAnInfo" lazy-init="true">
+		
+		<property name="userService" ref="userService"></property>
+		
+	</bean>
+	<bean id="backupAction" class="com.zq.action.BackupAaction" lazy-init="true">
+		
+		<property name="adminService" ref="adminService"></property>
+		
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

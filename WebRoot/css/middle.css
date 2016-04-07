@@ -1,0 +1,8 @@
+.middle{
+	width: 900px;
+	}
+.right{
+	width: 700px;
+	float:right;
+	background-color: coral;
+	}
